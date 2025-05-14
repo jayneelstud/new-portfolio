@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 214 60% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 214 60% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 60% 10%;
+    --primary: 214 60% 10%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 214 60% 10%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 214 40% 45%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 214 60% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 214 32% 90%;
+    --input: 214 32% 90%;
+    --ring: 214 60% 10%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Apple-inspired dark mode colors */
+    --background: 220 14% 10%;
+    --foreground: 210 20% 98%;
+    --card: 224 16% 14%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 16% 14%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 210 100% 70%;
+    --primary-foreground: 220 14% 10%;
+    --secondary: 224 17% 18%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 224 16% 16%;
+    --muted-foreground: 214 15% 65%;
+    --accent: 220 35% 20%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62% 65%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 224 15% 20%;
+    --input: 224 15% 20%;
+    --ring: 212 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .container-custom {
+    @apply max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-padding {
+    @apply py-14 md:py-20;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-medium tracking-tight mb-8 relative inline-block;
+  }
+
+  .section-title::after {
+    content: "";
+    @apply absolute -bottom-2 left-0 w-16 h-0.5 bg-primary rounded-full;
+  }
+
+  .section-subtitle {
+    @apply text-xs uppercase tracking-widest text-primary mb-3 font-medium;
+  }
+}
+
+/* Refined animations */
+.animate-in {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+
+/* Apple-inspired glassmorphism */
+.glass-card {
+  @apply bg-secondary/80 backdrop-blur-lg border border-border/40 shadow-sm;
+}
+
+/* Refined project card styling */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  @apply rounded-xl shadow-md transition-all duration-300 hover:shadow-lg;
+  transform: translateZ(0);
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+}
+
+.project-card:hover .project-card-overlay {
+  opacity: 1;
+}
+
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.1) 0%, 
+    rgba(0, 0, 0, 0.6) 50%, 
+    rgba(0, 0, 0, 0.8) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 1.5rem;
+}
+
+.project-card-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Refined timeline styling */
+.timeline-item {
+  @apply relative pl-8 pb-8 border-l border-muted last:border-0 last:pb-0;
+}
+
+.timeline-dot {
+  @apply absolute -left-2 top-1 w-4 h-4 rounded-full bg-primary ring-4 ring-background shadow-sm;
+}
+
+/* Apple-style buttons */
+.btn-apple {
+  @apply rounded-full px-6 py-2.5 font-medium transition-all duration-200;
+  backdrop-filter: blur(10px);
+}
+
+.btn-apple-primary {
+  @apply bg-primary text-primary-foreground hover:brightness-110;
+}
+
+.btn-apple-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+}
+
+/* Subtle hover effects */
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
+
+/* Gradient text for emphasis */
+.gradient-text {
+  @apply text-transparent bg-clip-text;
+  background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary)/0.8));
+}
+
+/* Apple-style dividers */
+.divider-apple {
+  @apply h-px w-full bg-gradient-to-r from-transparent via-border to-transparent;
+}
